@@ -27,7 +27,7 @@ for row in df:
         _x.append(row[i])
     X.append(_x)
     y.append(row[number_semester * 3 + 1])
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify = y)   
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=34, stratify = y)   
 
 # Feature Scaling
 sc = StandardScaler()
@@ -36,7 +36,7 @@ X_train_std = sc.transform(X_train)
 X_test_std = sc.transform(X_test)
 
 # Model
-clf = LogisticRegression(random_state=0).fit(X, y)
+clf = LogisticRegression(random_state=34).fit(X, y)
 
 
 y_pred = clf.predict(X_test)

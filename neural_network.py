@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.naive_bayes import GaussianNB 
+from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from matplotlib import style
@@ -27,7 +27,7 @@ for row in df:
         _x.append(row[i])
     X.append(_x)
     y.append(row[number_semester * 3 + 1])
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify = y)   
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=34, stratify = y)   
 
 # Feature Scaling
 sc = StandardScaler()
@@ -36,9 +36,9 @@ X_train_std = sc.transform(X_train)
 X_test_std = sc.transform(X_test)
 
 # Model
-gnb = GaussianNB().fit(X_train, y_train)
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 3), random_state=34)
 
-
-y_pred = gnb.predict(X_test)
+clf.fit(X_train_std, y_train)
+y_pred = clf.predict(X_test)
 print('Accuracy: %.3f' % accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))

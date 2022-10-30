@@ -27,7 +27,7 @@ for row in df:
         _x.append(row[i])
     X.append(_x)
     y.append(row[number_semester * 3 + 1])
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify = y)   
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify = y)   
 
 # Feature Scaling
 sc = StandardScaler()
